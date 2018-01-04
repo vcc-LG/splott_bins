@@ -9,6 +9,9 @@ __pycache__/
 # Secrets
 credentials.py
 
+# Data
+bin_data.py
+
 # Distribution / packaging
 .Python
 build/
