@@ -1,5 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
+import re
+
+import tweepy
+from time import sleep
+from credentials import *
 
 r = requests.post("https://wastemanagementcalendar.cardiff.gov.uk/AddressSearch.aspx",
     data='ScriptManager1=UpdatePanel1%7CbtnSearch&__LASTFOCUS=&__EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE=%2FwEPDwUINTkyNjYzODIPZBYCAgEPZBYGAgMPZBYCZg9kFgQCCQ8PFgIeC1Bvc3RCYWNrVXJsBQ5%2BL0VuZ2xpc2guYXNweGRkAgsPZBYCZg9kFgICAw8QZGQWAGQCBw88KwARAQwUKwAAZAIJD2QWAmYPZBYCAgEPZBYCZg9kFgICAQ9kFgICAQ9kFgJmD2QWAgIDD2QWAgIBD2QWAgIBD2QWAmYPZBYEAgcPZBYCAgMPEGRkFgFmZAIJD2QWAgIDDxBkZBYBZmQYAQUJR3JpZFZpZXcxD2dkbzYIVPwDTI7TJ%2BYkCtu2aNQVQ4r1M9%2BwFlIWCMy14D4%3D&__VIEWSTATEGENERATOR=B98B31EF&__PREVIOUSPAGE=vRoET5o8n9C72_frMgxzVi5rRPjjygE2Lf6Mu9XYsXMnVtLKTQ_x0QyfCZC8r-VzGoLnFYxKtlu0v9TV56TSwmTR8EwAhlJYz0NRO2IdUHI1&__EVENTVALIDATION=%2FwEdAAW7GET92NTL3L1x4ntO%2BpKqmo%2BdHUlcYdaxxI%2FU%2FS9ZXW8rMPcp2uUNKS9mSvt%2BTTCO1N1XNFmfsMXJasjxX85jjtvMmEKuzieXB%2FWRITu4EIx6kbOo0nZ9p5A6yjLC5Po0qsZ4HWeCy6yN4fFXXXx0&txtAddress=222%20railway%20street&TextBoxWatermarkExtender1_ClientState=&__ASYNCPOST=true&btnSearch=Search',
@@ -52,3 +58,10 @@ for ele in data[1:]:
     tweet_dict['items'] = " and ".join(tweet_dict['items'])
     tweet_dict['text'] = 'It\'s bin night in Splott! You need to put out {}'.format(tweet_dict['items'] )
     tweet_data.append(tweet_dict)
+
+consumer_secret = consumer_secret.strip('\t')
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+
+api.update_status(tweet_data[0]['text'])
