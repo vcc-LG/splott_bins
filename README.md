@@ -18,6 +18,16 @@ Then tweet if today is the day before one of the collection days:
 ```
 python product_tweets.py
 ```
+You can change the Cardiff region it looks up by modifying the contents of `address.csv`. This isn't entirely reliable though. The file should simply contain the first line of the address required, e.g.:
+```
+18 Copperfield Drive
+```
+The code will fail for non-unique Cardiff addresses. There is a way of performing the query using the address's easting and northing values, but I haven't figured out to make this straightforward for users. Just avoid non-unique addresses!
+
 
 # Twitter
+The Twitter account which tweets data taken from the Council website is here:
 https://twitter.com/splott_bins
+
+# Hosting
+The code will be hosted on PythonAnywhere.

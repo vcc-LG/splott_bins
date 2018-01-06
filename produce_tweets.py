@@ -2,6 +2,7 @@ import tweepy
 from credentials import *
 from datetime import datetime, timedelta
 import _pickle as cPickle
+import sys
 
 def get_api(consumer_key, consumer_secret, access_token, access_token_secret):
     consumer_secret = consumer_secret.strip('\t')
@@ -14,8 +15,12 @@ def post_tweet(api, content):
     api.update_status(content)
 
 if __name__ == "__main__":
-    with open('bin_data.p', 'rb') as fp:
-        tweet_data = cPickle.load(fp)
+    try:
+        with open('bin_data.p', 'rb') as fp:
+            tweet_data = cPickle.load(fp)
+    except:
+        print("Could not open tweet data")
+        sys.exit(1)
 
     date_now = datetime.now()
 
@@ -24,3 +29,5 @@ if __name__ == "__main__":
             api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
             post_tweet(api,tweet['text'])
             print('Tweeted about bins!')
+        else:
+            print('It\'s not bin day today!')
