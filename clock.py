@@ -19,7 +19,7 @@ def gather_comments():
     q.enqueue(run_gather_comments)
 
 # sched.add_job(run_query_council) #enqueue right away once
-sched.add_job(run_query_council, 'interval', days=1, start_date='2017-01-07 23:30:00')
+sched.add_job(run_query_council, 'interval', days=1, start_date='2018-01-07 23:30:00')
 # sched.add_job(run_produce_tweets) #enqueue right away once
-sched.add_job(run_produce_tweets, 'interval', days=1, start_date='2017-01-07 23:30:00')
+sched.add_job(run_produce_tweets, 'interval', days=1, start_date='2018-01-07 23:30:00')
 sched.start()
