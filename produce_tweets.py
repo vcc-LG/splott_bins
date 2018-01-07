@@ -33,13 +33,12 @@ def run_produce_tweets():
             post_tweet(api,tweet['text'])
             print('Tweeted about bins!')
             logging.debug("{} : Successful tweet posting".format(datetime.now()))
-        elif 1 == 1:
-            api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
-            post_tweet(api,"I can post from heroku!")
-            logging.debug("{} : Successful tweet posting".format(datetime.now()))
         else:
             print('It\'s not bin day today!')
-
+            
+    api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
+    post_tweet(api,"I can post from heroku!")
+    logging.debug("{} : Successful tweet posting".format(datetime.now()))
 
 if __name__ == "__main__":
     try:
