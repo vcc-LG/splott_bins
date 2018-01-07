@@ -3,6 +3,9 @@ from credentials import *
 from datetime import datetime, timedelta
 import _pickle as cPickle
 import sys
+import logging
+
+logging.basicConfig(filename="tweet_log.log", level=logging.DEBUG)
 
 def get_api(consumer_key, consumer_secret, access_token, access_token_secret):
     consumer_secret = consumer_secret.strip('\t')
@@ -29,8 +32,11 @@ def run_produce_tweets():
             api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
             post_tweet(api,tweet['text'])
             print('Tweeted about bins!')
+            logging.debug("{} : Successful tweet posting".format(datetime.now()))
+
         else:
             print('It\'s not bin day today!')
+
 
 if __name__ == "__main__":
     try:

@@ -6,6 +6,9 @@ import _pickle as cPickle
 import pprint
 import sys
 import csv
+import logging
+
+logging.basicConfig(filename="query_log.log", level=logging.DEBUG)
 
 def post_request(address_details):
     r = requests.post("https://wastemanagementcalendar.cardiff.gov.uk/AddressSearch.aspx",
@@ -84,6 +87,7 @@ def save_data(tweet_data):
     with open('bin_data.p', 'wb') as fp:
         cPickle.dump(tweet_data, fp)
     print('Data saved successfully')
+    logging.debug("{} : Successful query and save".format(datetime.now()))
 
 def get_address_details():
     with open('address.csv', 'r') as f:
