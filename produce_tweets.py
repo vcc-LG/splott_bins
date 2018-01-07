@@ -37,7 +37,7 @@ def run_produce_tweets():
             print('It\'s not bin day today!')
 
     api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
-    post_tweet(api,"I can post from heroku!")
+    post_tweet(api,"I can post from this bit up here!")
     logging.debug("{} : Successful tweet posting".format(datetime.now()))
 
 if __name__ == "__main__":
@@ -58,5 +58,5 @@ if __name__ == "__main__":
         else:
             print('It\'s not bin day today!')
     api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
-    post_tweet(api,"I can post from my this bit!")
+    post_tweet(api,"I can post from my this bit down here!")
     logging.debug("{} : Successful tweet posting".format(datetime.now()))
