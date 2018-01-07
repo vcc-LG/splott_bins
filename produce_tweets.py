@@ -57,6 +57,6 @@ if __name__ == "__main__":
             print('Tweeted about bins!')
         else:
             print('It\'s not bin day today!')
-    api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
-    post_tweet(api,"I can post from my this bit down here!")
-    logging.debug("{} : Successful tweet posting".format(datetime.now()))
+    # api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
+    # post_tweet(api,"I can post from my this bit down here!")
+    # logging.debug("{} : Successful tweet posting".format(datetime.now()))
