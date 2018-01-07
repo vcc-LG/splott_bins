@@ -14,6 +14,24 @@ def get_api(consumer_key, consumer_secret, access_token, access_token_secret):
 def post_tweet(api, content):
     api.update_status(content)
 
+def run_produce_tweets():
+    try:
+        with open('bin_data.p', 'rb') as fp:
+            tweet_data = cPickle.load(fp)
+    except:
+        print("Could not open tweet data")
+        sys.exit(1)
+
+    date_now = datetime.now()
+
+    for tweet in tweet_data:
+        if tweet['date'].date() - timedelta(days=1) == date_now.date():
+            api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
+            post_tweet(api,tweet['text'])
+            print('Tweeted about bins!')
+        else:
+            print('It\'s not bin day today!')
+
 if __name__ == "__main__":
     try:
         with open('bin_data.p', 'rb') as fp:

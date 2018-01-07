@@ -68,10 +68,12 @@ def create_tweets_dict(raw_data):
         tweet_dict = {}
         tweet_dict['date'] = datetime.strptime(ele[0],'%A%d/%m/%Y')
         tweet_dict['items'] = []
-        for item in ele[2:]:
+        for item in ele[1:]:
             item_temp = re.findall('[A-Z][^A-Z]*', item)
             item_temp = [word.upper() for word in item_temp]
             item_temp = ' '.join(item_temp)
+            if "NOT CURRENTLY REGISTERED" in item_temp:
+                item_temp = item_temp.replace('NOT CURRENTLY REGISTERED.  PLEASE CONTACT US ','')
             tweet_dict['items'].append(item_temp)
         tweet_dict['items'] = " and ".join(tweet_dict['items'])
         tweet_dict['text'] = '{}: It\'s bin night in Splott! You need to put out {}'.format(tweet_dict['date'].strftime("%A, %d. %B %Y"), tweet_dict['items'] )
@@ -89,6 +91,14 @@ def get_address_details():
         output_list = list(reader)
     return output_list[0]
 
+def run_query_council():
+    address_details = get_address_details()
+    r = post_request(address_details)
+    raw_data = parse_content(r)
+    tweet_data = create_tweets_dict(raw_data)
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(tweet_data)
+    save_data(tweet_data)
 
 if __name__ == "__main__":
     address_details = get_address_details()
