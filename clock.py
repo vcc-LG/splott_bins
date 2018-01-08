@@ -22,7 +22,7 @@ def one_off_tweet():
     q.enqueue(run_one_off_tweet)
 
 sched.add_job(one_off_tweet) #enqueue right away once
-sched.add_job(one_off_tweet, 'interval', minutes=1, start_date='2018-01-08 21:20:00')
+sched.add_job(one_off_tweet, 'interval', minutes=1, start_date='2018-01-08 22:20:00')
 # sched.add_job(query_council) #enqueue right away once
 # sched.add_job(query_council, 'interval', days=1, start_date='2018-01-08 21:03:00')
 # sched.add_job(produce_tweets) #enqueue right away once
