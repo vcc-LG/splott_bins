@@ -50,19 +50,19 @@ def post_request(address_details):
 
 def parse_content(response):
     c = response.content
-    soup = BeautifulSoup(c)
+    soup = BeautifulSoup(c, "html.parser")
     table = soup.find('table', attrs={'class':'border'})
     try:
-        table_body = table.find('tbody')
+        # table_body = table.find('tbody')
+        rows = table.find_all('tr')
     except:
         print("Could not find table in HTML - is your address file correct?")
         sys.exit(1)
-    rows = table_body.find_all('tr')
     data = []
-    for row in rows:
-        cols = row.find_all('td')
+    for row in rows[1:]:
+        cols = row.find_all('center')
         cols = [ele.text.strip() for ele in cols]
-        data.append([ele for ele in cols if ele])
+        data.append([ele for ele in cols[0:2] if ele])
     return data
 
 def create_tweets_dict(raw_data):
