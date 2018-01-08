@@ -67,7 +67,7 @@ def parse_content(response):
 
 def create_tweets_dict(raw_data):
     tweet_data = []
-    for ele in raw_data[1:]:
+    for ele in raw_data:
         tweet_dict = {}
         tweet_dict['date'] = datetime.strptime(ele[0],'%A%d/%m/%Y')
         tweet_dict['items'] = []
