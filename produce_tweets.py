@@ -39,7 +39,7 @@ def run_produce_tweets():
 def run_one_off_tweet():
     print('Running one off tweet')
     api = get_api(consumer_key, consumer_secret, access_token, access_token_secret)
-    post_tweet(api,"I can post from heroku - really!")
+    post_tweet(api,"{} I can post from heroku - really!".format(datetime.now()))
     logging.debug("{} : Successful tweet posting".format(datetime.now()))
 
 if __name__ == "__main__":
