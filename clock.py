@@ -18,10 +18,10 @@ def query_council():
 def produce_tweets():
     q.enqueue(run_produce_tweets)
 
-# def one_off_tweet():
-#     q.enqueue(run_one_off_tweet)
+def one_off_tweet():
+    q.enqueue(run_one_off_tweet)
 
-# sched.add_job(one_off_tweet) #enqueue right away once
+sched.add_job(one_off_tweet) #enqueue right away once
 sched.add_job(query_council, 'interval', days=1, start_date='2018-01-08 20:45:00')
 # sched.add_job(produce_tweets) #enqueue right away once
 sched.add_job(produce_tweets, 'interval', days=1, start_date='2018-01-08 20:45:00')
