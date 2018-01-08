@@ -50,7 +50,7 @@ def post_request(address_details):
 
 def parse_content(response):
     c = response.content
-    soup = BeautifulSoup(c, "html5lib")
+    soup = BeautifulSoup(c)
     table = soup.find('table', attrs={'class':'border'})
     try:
         table_body = table.find('tbody')
