@@ -62,7 +62,7 @@ def parse_content(response):
     for row in rows[1:]:
         cols = row.find_all('center')
         cols = [ele.text.strip() for ele in cols]
-        data.append([ele for ele in cols[0:2] if ele])
+        data.append([ele for ele in cols if ele])
     return data
 
 def create_tweets_dict(raw_data):
