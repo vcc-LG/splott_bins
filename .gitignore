@@ -7,10 +7,19 @@ __pycache__/
 *.so
 
 ## Secrets
-# credentials.py
+credentials.py
 
 # Data
 bin_data.p
+
+# Address
+address.csv
+
+# Log files
+*.log
+
+# Trash
+dump.rdb
 
 # Distribution / packaging
 .Python
